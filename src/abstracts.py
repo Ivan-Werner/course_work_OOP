@@ -22,4 +22,8 @@ class BaseAPI(ABC):
     def get_params(self):
         pass
 
+    @abstractmethod
+    def parsing_data(self):
+        pass
+
 
