@@ -1,6 +1,8 @@
 from src.vacancy import Vacancy
 
 
+
+
 def user_interaction():
     api = HHApi()
     word = input()

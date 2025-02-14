@@ -3,7 +3,7 @@
 
 class Vacancy:
     """Класс для работы с вакансиями"""
-    __slots__ = ("name", "city", "requirements", "salary", "url")
+    # __slots__ = ("name", "city", "requirements", "salary", "url")
 
     def __init__(self, name, city, requirements, salary, url):
         self.name = name
@@ -11,7 +11,7 @@ class Vacancy:
         self.requirements = requirements
         self.salary = salary
         self.url = url
-
+        self.result = []
 
 
     @classmethod
@@ -33,7 +33,19 @@ class Vacancy:
             all_vacancies.append(result)
         return all_vacancies
 
+    def filter_city(self):
+        result_city = []
+        for i in self.result:
+            if self.city == i["city"]:
+                result_city.append(i)
+        return result_city
 
+    def __le__(self, other, res_list):
+        res_salary = []
+        for i in res_list:
+            if other <= i["salary"]["from"]:
+                res_salary.append(i)
+        return res_salary
 
 
 
