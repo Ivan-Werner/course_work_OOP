@@ -17,6 +17,8 @@ class JSONSaver(BaseSaver):
             json.dump(vacancies_info, file, ensure_ascii=False, indent=4)
 
 
+
+
     def read_from_file(self):
         with open(self.__path, "r", encoding="utf-8") as file:
             data = json.load(file)

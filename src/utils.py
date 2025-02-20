@@ -8,9 +8,16 @@ def top_vacancy(number, vacancies_list):
         return vacancies_list[0:int(number)]
 
 
-def filter_words():
+def filter_words(res_list, words_list):
     """Поиск вакансий по ключевым словам"""
-    pass
+    result_list = []
+    for index in res_list:
+        for i in words_list:
+            if index["requirements"] is None:
+                continue
+            elif i in index["requirements"] or i in index["name"]:
+                result_list.append(index)
+    return result_list
 
 
 

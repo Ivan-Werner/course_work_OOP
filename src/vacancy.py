@@ -21,7 +21,7 @@ class Vacancy:
         for vac_info in vacancies_info:
             name = vac_info["name"]
             city = vac_info["area"]["name"]
-            requirements = vac_info["snippet"] if vac_info["snippet"].get("requirement") else "Не указано"
+            requirements = vac_info["snippet"]["requirement"] if vac_info["snippet"].get("requirement") else "Не указано"
             salary = vac_info["salary"]
             if salary:
                 salary_from = salary["from"] if salary.get("from") else 0
