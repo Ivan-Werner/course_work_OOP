@@ -18,9 +18,12 @@ class BaseSaver(ABC):
     def save_to_file(self, vacancy_list):
         pass
 
-    @abstractmethod
-    def def_from_file(self, del_keywords):
+    def del_from_file(self):
         pass
+
+    # @abstractmethod
+    # def def_from_file(self, del_keywords):
+    #     pass
 
     # @abstractmethod
     # def filter_by_words(self, words_list):
