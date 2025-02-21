@@ -7,7 +7,7 @@ from src.vacancy import Vacancy
 if __name__ == '__main__':
     """Запрос данных по API и запись в JSON-файл"""
     vacancy_parser= APIHeadHunter()
-    vacancies_data = vacancy_parser.get_vacancies("дворецкий")
+    vacancies_data = vacancy_parser.get_vacancies("юрист")
     vacancies = Vacancy.cast_to_objects(vacancies_data)
     saver = JSONSaver()
     saver.save_to_file(vacancies)

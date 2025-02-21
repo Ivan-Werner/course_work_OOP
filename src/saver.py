@@ -1,5 +1,7 @@
 import json
 from abc import ABC
+import os
+from sys import version_info
 
 from src.vacancy import Vacancy
 from src.abstracts import BaseSaver
@@ -12,13 +14,17 @@ class JSONSaver(BaseSaver):
 
     def save_to_file(self, vacancies):
         """Функция добавляет данные в JSON-файл"""
-        vacancies_info = [vac.to_json() for vac in vacancies]
+        vacancies_info = [vac.to_json() for vac in vacancies if vac not in version_info]
 
-        # with open(self.__path, "r", encoding="utf-8") as source_file:
-        #     data = json.load(source_file)
-        # vacancies_info += data
+        with open(self.__path, "r", encoding="utf-8") as source_file:
+            data = json.load(source_file)
+        vacancies_info += data
         with open(self.__path, "w", encoding="utf-8") as file:
             json.dump(vacancies_info, file, ensure_ascii=False, indent=4)
+
+
+
+
 
 
 
@@ -32,8 +38,8 @@ class JSONSaver(BaseSaver):
 
     def del_from_file(self):
         """Функция удаляет данные из файла"""
-        with open(self.__path, "w"):
-            pass
+        with open(self.__path, "w", encoding="utf-8") as file:
+            json.dump([], file, ensure_ascii=False, indent=4)
 
 
 

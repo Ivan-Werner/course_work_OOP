@@ -37,7 +37,7 @@ def user_interaction():
     top_n = input("Введите сколько Топ-вакансий вы хотите посмотреть: ")
     res = top_vacancy(top_n, sorted_list)
     for i in res:
-        print(i["requirements"])
+        print(i)
 
 
 
