@@ -7,7 +7,7 @@ from src.vacancy import Vacancy
 if __name__ == '__main__':
     """Запрос данных по API и запись в JSON-файл"""
     vacancy_parser= APIHeadHunter()
-    vacancies_data = vacancy_parser.get_vacancies("крановщик")
+    vacancies_data = vacancy_parser.get_vacancies("дворецкий")
     vacancies = Vacancy.cast_to_objects(vacancies_data)
     saver = JSONSaver()
     saver.save_to_file(vacancies)
@@ -26,9 +26,12 @@ if __name__ == '__main__':
     # print(vacancies_list)
     sorted_list = sorted(vacancies_list, reverse=True)
     """Топ записей"""
-    res = top_vacancy(7, sorted_list)
+    res = top_vacancy(5, sorted_list)
     for i in res:
         print(i)
+
+    """Удаление данных из файла"""
+    # saver.del_from_file()
 
 
 

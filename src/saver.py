@@ -13,8 +13,13 @@ class JSONSaver(BaseSaver):
     def save_to_file(self, vacancies):
         """Функция добавляет данные в JSON-файл"""
         vacancies_info = [vac.to_json() for vac in vacancies]
+
+        # with open(self.__path, "r", encoding="utf-8") as source_file:
+        #     data = json.load(source_file)
+        # vacancies_info += data
         with open(self.__path, "w", encoding="utf-8") as file:
             json.dump(vacancies_info, file, ensure_ascii=False, indent=4)
+
 
 
 
