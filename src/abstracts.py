@@ -14,20 +14,17 @@ class BaseAPI(ABC):
 
 
 class BaseSaver(ABC):
+    """Абстрактный класс для работы с файлом"""
     @abstractmethod
     def save_to_file(self, vacancy_list):
+        """Метод сохранения данных в файл"""
         pass
 
     def del_from_file(self):
+        """Метод удаления данных из файла"""
         pass
 
-    # @abstractmethod
-    # def def_from_file(self, del_keywords):
-    #     pass
 
-    # @abstractmethod
-    # def filter_by_words(self, words_list):
-    #     pass
 
 
 

@@ -6,8 +6,8 @@ class APIHeadHunter(BaseAPI):
 
 
     def __init__(self):
-        self._url = "https://api.hh.ru/vacancies"
-        self._headers = {'User-Agent': 'HH-User-Agent'}
+        self.__url = "https://api.hh.ru/vacancies"
+        self.__headers = {'User-Agent': 'HH-User-Agent'}
         self.params = {'text': '', 'page': 0, 'per_page': 100}
         self.vacancies = []
 
@@ -24,8 +24,9 @@ class APIHeadHunter(BaseAPI):
     #     return self.vacancies
 
     def get_vacancies(self, keyword):
+        """Получаем вакансии по API с ресурса HH.ru"""
         self.params["text"] = keyword
-        response = requests.get(self._url, params=self.params, headers=self._headers)
+        response = requests.get(self.__url, params=self.params, headers=self.__headers)
         if response.status_code == 200:
             vacancies_info = response.json()["items"]
             return vacancies_info
@@ -33,26 +34,19 @@ class APIHeadHunter(BaseAPI):
             print(f"Ошибка соединения: {response.status_code}")
             return []
 
-    # def get_vacancies(self, keyword):
-    #     params = {"text": keyword}
-    #     response = requests.get(self._url, params=params, headers=self._headers)
-    #     if response.status_code == 200:
-    #         return response.json()["items"]
-    #     else:
-    #         print(f"Ошибка соединения: {response.status_code}")
-    #         return []
 
 
 
 
-if __name__ == '__main__':
 
-    hh_vacancies = APIHeadHunter()
-
-    res = APIHeadHunter.get_vacancies(hh_vacancies, "крановщик")
-    # print(len(res))
-    for i in res:
-        print(i)
+# if __name__ == '__main__':
+#
+#     hh_vacancies = APIHeadHunter()
+#
+#     res = APIHeadHunter.get_vacancies(hh_vacancies, "крановщик")
+#     # print(len(res))
+#     for i in res:
+#         print(i)
 
     # source_list = []
     # for i in res:

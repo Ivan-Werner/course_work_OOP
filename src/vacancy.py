@@ -12,7 +12,7 @@ class Vacancy:
         self.salary_from = salary_from
         self.salary_to = salary_to
         self.url = url
-        # self.result = []
+
 
 
     @classmethod
@@ -38,23 +38,22 @@ class Vacancy:
         return {"name": self.name, "city": self.city, "requirements": self.requirements,
                 "salary_from": self.salary_from, "salary_to": self.salary_to, "url": self.url}
 
-    # def filter_city(self):
-    #     result_city = []
-    #     for i in self.result:
-    #         if self.city == i["city"]:
-    #             result_city.append(i)
-    #     return result_city
+
 
     def __lt__(self, other):
-        # return self.salary_from < other.salary_from
+        """Магический метод для создания Топа вакансий"""
         return (self.salary_from, self.salary_to) < (other.salary_from, other.salary_to)
 
     def __str__(self):
+        """Красивый вывод с помощью магического метода"""
         return (f"Вакансия: {self.name}\nГород: {self.city}\nТребования: {self.requirements}\n"
                 f"Зарплата от {self.salary_from} до {self.salary_to}\nURL: {self.url}\n")
 
     def __repr__(self):
+        """Магический метод для проверки в процессе разработки"""
         return f"{self.__class__.__name__}, зп {self.salary_from}"
+
+
 
 
 

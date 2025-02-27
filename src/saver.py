@@ -1,9 +1,4 @@
 import json
-from abc import ABC
-import os
-from sys import version_info
-
-from src.vacancy import Vacancy
 from src.abstracts import BaseSaver
 from config import path_to_data_json
 
@@ -13,20 +8,18 @@ class JSONSaver(BaseSaver):
 
 
     def save_to_file(self, vacancies):
-        """Функция добавляет данные в JSON-файл"""
-        vacancies_info = [vac.to_json() for vac in vacancies if vac not in version_info]
+        """Функция добавляет данные в JSON-файл, исключая дубли"""
+        try:
+            with open(self.__path, "r", encoding="utf-8") as source_file:
+                data = json.load(source_file)
+        except (FileNotFoundError, json.JSONDecodeError):
+            data = []
+        existing_vacancies = {vac["url"]: vac for vac in data}
 
-        with open(self.__path, "r", encoding="utf-8") as source_file:
-            data = json.load(source_file)
-        vacancies_info += data
+        existing_vacancies.update({vac.url: vac.to_json() for vac in vacancies})
+
         with open(self.__path, "w", encoding="utf-8") as file:
-            json.dump(vacancies_info, file, ensure_ascii=False, indent=4)
-
-
-
-
-
-
+            json.dump(list(existing_vacancies.values()), file, ensure_ascii=False, indent=4)
 
 
 
@@ -45,14 +38,4 @@ class JSONSaver(BaseSaver):
 
 
 
-# class JSONSaver(BaseSaver):
-#     def save_to_file(self, vacancies):
-#         json.load()
-#         json.dump()
-
-#     def def_from_file(self, url):
-#         pass
-#
-#     def filter_by_words(self, words_list):
-#         pass
 
