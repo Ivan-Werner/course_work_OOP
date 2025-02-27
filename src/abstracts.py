@@ -15,17 +15,14 @@ class BaseAPI(ABC):
 
 class BaseSaver(ABC):
     """Абстрактный класс для работы с файлом"""
+
     @abstractmethod
     def save_to_file(self, vacancy_list):
         """Метод сохранения данных в файл"""
         pass
 
+
+    @abstractmethod
     def del_from_file(self):
         """Метод удаления данных из файла"""
         pass
-
-
-
-
-
-

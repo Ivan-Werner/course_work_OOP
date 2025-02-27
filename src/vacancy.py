@@ -1,6 +1,4 @@
 
-
-
 class Vacancy:
     """Класс для работы с вакансиями"""
     __slots__ = ("name", "city", "requirements", "salary_from", "salary_to", "url")
@@ -17,6 +15,7 @@ class Vacancy:
 
     @classmethod
     def cast_to_objects(cls, vacancies_info: list[dict]):
+        """Метод сохранения нужных полей и их валидации"""
         all_vacancies = []
         for vac_info in vacancies_info:
             name = vac_info["name"]
@@ -52,17 +51,4 @@ class Vacancy:
     def __repr__(self):
         """Магический метод для проверки в процессе разработки"""
         return f"{self.__class__.__name__}, зп {self.salary_from}"
-
-
-
-
-
-
-
-
-
-
-
-
-
 

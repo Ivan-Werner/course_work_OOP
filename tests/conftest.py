@@ -4,10 +4,6 @@ import pytest
 from src.api import APIHeadHunter
 from src.vacancy import Vacancy
 
-
-
-
-
 @pytest.fixture
 def vacancy():
     return Vacancy("Помощник фотографа",
@@ -17,10 +13,4 @@ def vacancy():
                    0,
                    "https://hh.ru/vacancy/117261098"
                    )
-
-
-
-
-
-
 
