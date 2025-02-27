@@ -1598,5 +1598,37 @@
         "salary_from": 100000,
         "salary_to": 160000,
         "url": "https://hh.ru/vacancy/116644921"
+    },
+    {
+        "name": "Крановщик",
+        "city": "Алматы",
+        "requirements": "Не указано",
+        "salary_from": 350000,
+        "salary_to": 450000,
+        "url": "https://hh.ru/vacancy/117771848"
+    },
+    {
+        "name": "Разнорабочий",
+        "city": "Тверь",
+        "requirements": "Опыт работы на производстве, а также наличие навыков стропальщика, <highlighttext>крановщика</highlighttext> или сварщика будет преимуществом.",
+        "salary_from": 155000,
+        "salary_to": 0,
+        "url": "https://hh.ru/vacancy/117714242"
+    },
+    {
+        "name": "Машинист крана-автомобильного",
+        "city": "Москва",
+        "requirements": "Водитель категории \"С\" с удостоверением <highlighttext>машинист</highlighttext> <highlighttext>крана</highlighttext>-автомобильного. Опыт работы <highlighttext>машинистом</highlighttext> <highlighttext>крана</highlighttext>-автомобильного.",
+        "salary_from": 200000,
+        "salary_to": 215000,
+        "url": "https://hh.ru/vacancy/117522111"
+    },
+    {
+        "name": "Машинист крана",
+        "city": "Магнитогорск",
+        "requirements": "Опыт работы <highlighttext>машинистом</highlighttext> <highlighttext>крана</highlighttext> не менее 1 года. Образование средне-специальное. Удостоверение \"<highlighttext>машинист</highlighttext> <highlighttext>крана</highlighttext>\". Знание техники безопасности при производстве работ. ",
+        "salary_from": 150000,
+        "salary_to": 200000,
+        "url": "https://hh.ru/vacancy/117685391"
     }
 ]

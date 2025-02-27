@@ -24,12 +24,9 @@ def filter_city(main_vacancies_list, pattern_city="Москва"):
 
 
 def user_interaction():
+    """Функция для взаимодействия с пользователем"""
     vacancy_parser= APIHeadHunter()
     vacancy_name = input("Введите название вакансии, которую вы хотите добавить в файл: ")
-    # city_choised = input("Выберете город, в котором ищете вакансии: ")
-
-
-
 
     vacancies_data = vacancy_parser.get_vacancies(vacancy_name)
     vacancies = Vacancy.cast_to_objects(vacancies_data)
@@ -53,9 +50,6 @@ def user_interaction():
 
 
 
-    # vacancies_list = filter_city(vacancies_list, city_choised)
-    # print(vacancies_list)
-
     top_n = input("3. Выберете Топ-n вакансий по заработной плате (введите n).\n"
                   "Нажмите Enter, для вывода всего списка:\n ")
     sorted_list = sorted(vacancies_list, reverse=True)
@@ -72,10 +66,6 @@ def user_interaction():
         print("Файл очищен.")
     else:
         print("Данные сохранены в файл.")
-
-
-
-
 
 
 if __name__ == '__main__':

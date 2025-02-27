@@ -1,26 +1,34 @@
 import unittest
-from unittest.mock import MagicMock, patch
+import pytest
+from unittest.mock import MagicMock, patch, Mock
 from src.api import APIHeadHunter
 
-# class TestAPIHeadHunter(unittest.TestCase):
-#     @patch('request.get')
-#     def test_get_vacancies_error(self, mock_get):
-#         mock_response = MagicMock()
-#         mock_response.json.return_value = {
-#             'items': [
-#                 {'name': 'Developer', 'salary': 1500},
-#                 {'name': 'QA', 'salary': 1000}
-#             ]
-#         }
-#         mock_get.return_value = mock_response
-#         hh = APIHeadHunter()
-#         hh.get_vacancies('Developer')
-#         self.assertGreater(len(hh.vacancies), 0)
-#         self.assertEqual(hh.vacancies[0]['name'], 'Developer')
-#         mock_get.assert_called_with(
-#
-#         )
-#
-#
-# if __name__ == '__main__':
-#     unittest.main()
+@pytest.fixture()
+def api_client():
+    return APIHeadHunter()
+
+@pytest.fixture(scope='session')
+def success_hh_response_body():
+    return {'items': [{'id': 1}]}
+
+
+@patch('requests.get')
+def test_get_vacancies_success(mocked_get, api_client, success_hh_response_body):
+    mocked_response = Mock(status_code=200)
+    mocked_response.json.return_value = success_hh_response_body
+    mocked_get.return_value = mocked_response
+
+    response = api_client.get_vacancies('python')
+
+    assert response == success_hh_response_body['items']
+
+
+@patch('requests.get')
+def test_get_vacancies_error(mocked_get, api_client, success_hh_response_body):
+    mocked_response = Mock(status_code=400)
+    mocked_response.json.return_value = {'error': 'Something go wrong'}
+    mocked_get.return_value = mocked_response
+
+    response = api_client.get_vacancies('python')
+
+    assert response == []

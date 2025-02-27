@@ -1,39 +1,47 @@
 from src.utils import top_vacancy, filter_city
+from src.vacancy import Vacancy
+import pytest
 
-
-
-test_list =[
-{
-        "name": "Менеджер в отдел продаж",
-        "city": "Алматы",
-        "requirements": "У тебя грамотная речь. Ты хочешь хорошо зарабатывать. Ты открыт к новым знаниям. У тебя нет отвлекающих от работы факторов. ",
-        "salary_from": 300000,
-        "salary_to": 600000,
-        "url": "https://hh.ru/vacancy/116800921"
-    },
-    {
-        "name": "Помощник фотографа",
-        "city": "Алматы",
-        "requirements": "Умение работать с детьми, вежливость, аккуратность, пунктуальность.",
-        "salary_from": 100000,
-        "salary_to": 0,
-        "url": "https://hh.ru/vacancy/117261098"
-    },
-    {
-        "name": "Няня",
-        "city": "Москва",
-        "requirements": "Желателен педагогический/медицинский университет или курсы. Знание систем развития (монтессори, 7 гномов и др.). Опыт работы с детьми в возрасте...",
-        "salary_from": 90000,
-        "salary_to": 150000,
-        "url": "https://hh.ru/vacancy/117527024"
-    }
-]
 
 def test_top_vacancy():
     assert top_vacancy(number= "", vacancies_list=[1, 2, 3]) == [1, 2, 3]
     assert top_vacancy(number=2, vacancies_list=[1, 2, 3]) == [1, 2]
 
+
 def test_filter_city_empty():
     assert filter_city(main_vacancies_list=[]) == []
+
+
+def _create_vacancy(**kwargs):
+    data = {
+        'name': 'fake name',
+        'city': 'some city',
+        'requirements': 'req',
+        'salary_from': 1,
+        'salary_to': 100,
+        'url': 'https://hh.ru/some/vac/'
+    }
+    data.update(kwargs)
+    return Vacancy(**data)
+
+@pytest.mark.parametrize(
+    ('search_city', 'vacancies_count'),
+    [
+        ('Moscow', 2),
+        ('St. Petersburg', 1),
+        ('Minsk', 0)
+    ]
+)
+def test_filter_city(search_city, vacancies_count):
+    vacancies = [
+        _create_vacancy(city='Moscow'),
+        _create_vacancy(city='Moscow'),
+        _create_vacancy(city='St. Petersburg'),
+        _create_vacancy(city='Sochi')
+    ]
+
+    filtered_vacancies = filter_city(vacancies, pattern_city=search_city)
+    assert len(filtered_vacancies) == vacancies_count
+
 
 
